@@ -4,7 +4,12 @@ import './screens/home/main.dart' show Home;
 import './screens/settings.dart' show Settings;
 import './screens/add_todo.dart' show AddTodo;
 
-void main() => runApp(App());
+import './store/main.dart' show setupLocator;
+
+void main() {
+  setupLocator();
+  runApp(App());
+}
 
 class App extends StatelessWidget {
   @override
