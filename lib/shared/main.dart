@@ -1,2 +1,2 @@
-export './data.dart';
-export './theme.dart';
+export 'data.dart';
+export 'theme.dart';

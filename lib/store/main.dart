@@ -1,2 +1,2 @@
-export './day.dart';
-export './locator.dart';
+export 'day.dart';
+export 'locator.dart';

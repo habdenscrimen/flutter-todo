@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './calendar.dart' show Calendar;
-import './timeline.dart' show Timeline;
+import 'calendar.dart' show Calendar;
+import 'timeline.dart' show Timeline;
 
 class Home extends StatelessWidget {
   @override

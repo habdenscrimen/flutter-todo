@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
 
-import './day.dart';
+import 'day.dart';
 
 GetIt locator = GetIt();
 
