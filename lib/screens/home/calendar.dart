@@ -15,16 +15,16 @@ class Calendar extends StatefulWidget {
 class _CalendarState extends State<Calendar> with ThemeColors {
   @override
   Widget build(BuildContext context) {
-    final DayStore dayStore = locator.get<DayStore>();
+    final DayStore _dayStore = locator<DayStore>();
 
     return StreamBuilder(
-      stream: dayStore.stream$,
+      stream: _dayStore.stream$,
       builder: (context, snap) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
           child: CalendarCarousel<Event>(
             onDayPressed: (DateTime date, List<Event> events) {
-              dayStore.setDay(date);
+              _dayStore.setDay(date);
 
               // events.forEach((e) {
               //   print(e.title);

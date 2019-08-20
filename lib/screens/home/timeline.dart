@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:date_format/date_format.dart';
 
 import 'package:todo/store/main.dart' show DayStore, locator;
+import 'package:todo/shared/data.dart' show today;
 
 class Timeline extends StatefulWidget {
   @override
@@ -10,12 +12,13 @@ class Timeline extends StatefulWidget {
 class _TimelineState extends State<Timeline> {
   @override
   Widget build(BuildContext context) {
-    final DayStore dayStore = locator.get<DayStore>();
+    final DayStore _dayStore = locator<DayStore>();
 
     return StreamBuilder(
-      stream: dayStore.stream$,
+      initialData: today,
+      stream: _dayStore.stream$,
       builder: (context, snap) {
-        return Text('Selected day: ${snap.data}');
+        return Text('Selected day: ${formatDate(snap.data, [DD, ', ', d])}');
       },
     );
   }
