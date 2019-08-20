@@ -1,4 +1,5 @@
 import 'package:rxdart/rxdart.dart';
+import 'package:date_format/date_format.dart';
 
 import 'package:todo/shared/data.dart' show today;
 
@@ -8,6 +9,8 @@ class DayStore {
 
   Observable get stream$ => _day.stream;
   DateTime get current => _day.value;
+  String get formattedDay =>
+      current == today ? 'Today' : formatDate(current, [DD, ', ', d]);
 
   setDay(DateTime newDay) {
     if (newDay != current) {

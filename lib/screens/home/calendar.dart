@@ -4,15 +4,10 @@ import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
 import 'package:flutter_calendar_carousel/classes/event.dart' show Event;
 // import 'package:flutter_calendar_carousel/classes/event_list.dart';
 
-import 'package:todo/store/main.dart' show DayStore, locator;
+import 'package:todo/stores/main.dart' show DayStore, locator;
 import 'package:todo/shared/main.dart' show today, ThemeColors;
 
-class Calendar extends StatefulWidget {
-  @override
-  _CalendarState createState() => _CalendarState();
-}
-
-class _CalendarState extends State<Calendar> with ThemeColors {
+class Calendar extends StatelessWidget with ThemeColors {
   @override
   Widget build(BuildContext context) {
     final DayStore _dayStore = locator<DayStore>();

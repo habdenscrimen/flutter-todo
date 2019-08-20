@@ -4,7 +4,7 @@ import 'screens/home/main.dart' show Home;
 import 'screens/settings.dart' show Settings;
 import 'screens/add_todo.dart' show AddTodo;
 
-import 'store/main.dart' show setupLocator;
+import 'stores/main.dart' show setupLocator;
 
 void main() {
   setupLocator();

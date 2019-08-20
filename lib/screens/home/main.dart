@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'calendar.dart' show Calendar;
 import 'timeline.dart' show Timeline;
 
-import 'package:todo/store/main.dart' show DayStore, locator;
-import 'package:date_format/date_format.dart';
+import 'package:todo/stores/main.dart' show DayStore, locator;
 import 'package:todo/shared/data.dart' show today;
 
 class Home extends StatelessWidget {
@@ -18,7 +17,7 @@ class Home extends StatelessWidget {
           initialData: today,
           stream: _dayStore.stream$,
           builder: (context, snap) {
-            return Text('${formatDate(snap.data, [DD, ', ', d])}');
+            return Text('${_dayStore.formattedDay}');
           },
         ),
         actions: <Widget>[
