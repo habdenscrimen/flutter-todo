@@ -56,8 +56,8 @@ class TodoService {
     Database db = await database;
     List<Map> records = await db.query(
       tableTodo,
-      where: '$columnStartDate = ?',
-      whereArgs: [date.toIso8601String()],
+      where: '$columnStartDate = ? AND $columnDone = ?',
+      whereArgs: [date.toIso8601String(), 0],
     );
 
     return records.isNotEmpty
