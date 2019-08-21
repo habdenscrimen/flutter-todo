@@ -6,7 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import './model.dart';
 
 class TodoService {
-  static final _databaseName = "flutter_todo.db";
+  static final _databaseName = "flutter_todo2.db";
   static final _databaseVersion = 1; // Increment when changing schema.
 
   // Make this a singleton class.
@@ -40,7 +40,9 @@ class TodoService {
       CREATE TABLE $tableTodo (
         $columnId INTEGER PRIMARY KEY,
         $columnTitle TEXT NOT NULL,
-        $columnDone INTEGER NOT NULL
+        $columnDone INTEGER NOT NULL,
+        $columnStartDate TEXT NOT NULL,
+        $columnEndDate TEXT NOT NULL
       )
     ''');
   }
@@ -50,9 +52,13 @@ class TodoService {
     await db.insert(tableTodo, todo.toMap());
   }
 
-  Future<List<TodoModel>> list() async {
+  Future<List<TodoModel>> list(DateTime date) async {
     Database db = await database;
-    List<Map> records = await db.query(tableTodo);
+    List<Map> records = await db.query(
+      tableTodo,
+      where: '$columnStartDate = ?',
+      whereArgs: [date.toIso8601String()],
+    );
 
     return records.isNotEmpty
         ? records.map((t) => TodoModel.fromMap(t)).toList()

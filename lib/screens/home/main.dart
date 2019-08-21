@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'calendar.dart' show Calendar;
 import 'timeline.dart' show Timeline;
 
-import 'package:todo/stores/main.dart' show DayStore, locator;
+import 'package:todo/stores/main.dart' show TodoStore, locator;
 import 'package:todo/shared/data.dart' show today;
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final DayStore _dayStore = locator<DayStore>();
+    final TodoStore _dayStore = locator<TodoStore>();
 
     return Scaffold(
       appBar: AppBar(

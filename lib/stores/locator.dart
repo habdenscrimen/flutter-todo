@@ -1,9 +1,9 @@
 import 'package:get_it/get_it.dart';
 
-import 'day.dart';
+import 'todo.dart';
 
 GetIt locator = GetIt();
 
 void setupLocator() {
-  locator.registerSingleton<DayStore>(DayStore());
+  locator.registerSingleton<TodoStore>(TodoStore());
 }

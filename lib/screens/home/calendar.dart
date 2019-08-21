@@ -4,13 +4,13 @@ import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
 import 'package:flutter_calendar_carousel/classes/event.dart' show Event;
 // import 'package:flutter_calendar_carousel/classes/event_list.dart';
 
-import 'package:todo/stores/main.dart' show DayStore, locator;
+import 'package:todo/stores/main.dart' show TodoStore, locator;
 import 'package:todo/shared/main.dart' show today, ThemeColors;
 
 class Calendar extends StatelessWidget with ThemeColors {
   @override
   Widget build(BuildContext context) {
-    final DayStore _dayStore = locator<DayStore>();
+    final TodoStore _dayStore = locator<TodoStore>();
 
     return StreamBuilder(
       stream: _dayStore.stream$,
@@ -20,6 +20,7 @@ class Calendar extends StatelessWidget with ThemeColors {
           child: CalendarCarousel<Event>(
             onDayPressed: (DateTime date, List<Event> events) {
               _dayStore.setDay(date);
+              _dayStore.fetchTodos();
 
               // events.forEach((e) {
               //   print(e.title);
