@@ -3,15 +3,15 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 
-import './model.dart';
+import 'package:todo/model/todo.dart';
 
-class TodoService {
+class TodoProvider {
   static final _databaseName = "flutter_todo2.db";
   static final _databaseVersion = 1; // Increment when changing schema.
 
   // Make this a singleton class.
-  TodoService._privateConstructor();
-  static final TodoService instance = TodoService._privateConstructor();
+  TodoProvider._privateConstructor();
+  static final TodoProvider instance = TodoProvider._privateConstructor();
 
   // Only allow a single open connection to the database.
   static Database _database;

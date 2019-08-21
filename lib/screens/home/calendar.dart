@@ -2,29 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
     show CalendarCarousel, WeekdayFormat;
 import 'package:flutter_calendar_carousel/classes/event.dart' show Event;
-// import 'package:flutter_calendar_carousel/classes/event_list.dart';
+import 'package:todo/bloc/locator.dart';
+import 'package:todo/bloc/todo.dart';
 
-import 'package:todo/stores/main.dart' show TodoStore, locator;
 import 'package:todo/shared/main.dart' show today, ThemeColors;
 
 class Calendar extends StatelessWidget with ThemeColors {
   @override
   Widget build(BuildContext context) {
-    final TodoStore _dayStore = locator<TodoStore>();
+    final TodoBloc bloc = locator<TodoBloc>();
 
     return StreamBuilder(
-      stream: _dayStore.stream$,
+      stream: bloc.selectedDay.stream,
       builder: (context, snap) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
           child: CalendarCarousel<Event>(
             onDayPressed: (DateTime date, List<Event> events) {
-              _dayStore.setDay(date);
-              _dayStore.fetchTodos();
-
-              // events.forEach((e) {
-              //   print(e.title);
-              // });
+              bloc.selectDay(date);
+              bloc.fetchTodos();
             },
             thisMonthDayBorderColor: Colors.transparent,
             selectedDayButtonColor: Colors.transparent,

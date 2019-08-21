@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:todo/bloc/locator.dart';
+import 'package:todo/bloc/todo.dart';
 
-import 'package:todo/db/todo/model.dart';
-import 'package:todo/db/todo/service.dart';
+import 'package:todo/model/todo.dart';
 import 'package:todo/shared/data.dart';
 
 class AddTodo extends StatelessWidget {
-  Future<void> _addTodo() async {
-    TodoService service = TodoService.instance;
-    TodoModel todo = TodoModel(
-      done: false,
-      title: 'New todo',
-      startDate: today,
-      endDate: today,
-    );
-    await service.add(todo);
+  final TodoBloc bloc = locator<TodoBloc>();
+
+  final TodoModel _mockTodo = TodoModel(
+    done: false,
+    title: 'New todo',
+    startDate: today,
+    endDate: today,
+  );
+
+  Future<void> _addTodo(TodoModel todo) async {
+    await bloc.addTodo(todo);
   }
 
   @override
@@ -22,7 +25,7 @@ class AddTodo extends StatelessWidget {
       appBar: AppBar(),
       body: RaisedButton(
         child: Text('Add todo'),
-        onPressed: _addTodo,
+        onPressed: () => _addTodo(_mockTodo),
       ),
     );
   }

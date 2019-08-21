@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:todo/bloc/locator.dart';
+import 'package:todo/bloc/todo.dart';
 
 import 'calendar.dart' show Calendar;
 import 'timeline.dart' show Timeline;
 
-import 'package:todo/stores/main.dart' show TodoStore, locator;
 import 'package:todo/shared/data.dart' show today;
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final TodoStore _dayStore = locator<TodoStore>();
+    final TodoBloc bloc = locator<TodoBloc>();
 
     return Scaffold(
       appBar: AppBar(
         title: StreamBuilder(
           initialData: today,
-          stream: _dayStore.stream$,
+          stream: bloc.selectedDay.stream,
           builder: (context, snap) {
-            return Text('${_dayStore.formattedDay}');
+            return Text('${bloc.formattedDay}');
           },
         ),
         actions: <Widget>[
