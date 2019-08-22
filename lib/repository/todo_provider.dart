@@ -6,7 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:todo/model/todo.dart';
 
 class TodoProvider {
-  static final _databaseName = "flutter_todo3.db";
+  static final _databaseName = "flutter_todo.db";
   static final _databaseVersion = 1; // Increment when changing schema.
 
   // Make this a singleton class.
