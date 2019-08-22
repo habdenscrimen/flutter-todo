@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:todo/bloc/all.dart' show locator, TodoBloc;
 import 'package:todo/model/todo.dart' show TodoModel;
+import 'package:todo/shared/data.dart' show today;
 
 class AddTodo extends StatelessWidget {
   final TodoBloc bloc = locator<TodoBloc>();
@@ -24,8 +25,9 @@ class AddTodo extends StatelessWidget {
               TodoModel(
                 done: false,
                 title: 'New todo',
-                startDate: snapshot.data,
-                endDate: snapshot.data,
+                day: snapshot.data,
+                startTime: today,
+                endTime: today,
               ),
             ),
           );

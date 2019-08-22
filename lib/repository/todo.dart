@@ -12,4 +12,8 @@ class TodoRepository {
   Future<void> addTodo(TodoModel todo) async {
     await _todoProvider.add(todo);
   }
+
+  Future<void> update(TodoModel todo) async {
+    await _todoProvider.update(todo);
+  }
 }

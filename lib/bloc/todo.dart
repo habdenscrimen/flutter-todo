@@ -39,4 +39,8 @@ class TodoBloc {
   Future<void> addTodo(TodoModel todo) async {
     _repository.addTodo(todo);
   }
+
+  Future<void> update(TodoModel todo) async {
+    _repository.update(todo);
+  }
 }
