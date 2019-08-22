@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:todo/bloc/locator.dart';
-import 'package:todo/bloc/todo.dart';
 
+import 'package:todo/bloc/all.dart' show locator, TodoBloc;
+import 'package:todo/shared/data.dart' show today;
 import 'calendar.dart' show Calendar;
 import 'timeline.dart' show Timeline;
-
-import 'package:todo/shared/data.dart' show today;
 
 class Home extends StatelessWidget {
   @override

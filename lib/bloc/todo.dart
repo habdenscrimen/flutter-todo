@@ -1,7 +1,8 @@
 import 'package:date_format/date_format.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:todo/model/todo.dart';
-import 'package:todo/repository/todo.dart';
+
+import 'package:todo/model/todo.dart' show TodoModel;
+import 'package:todo/repository/todo.dart' show TodoRepository;
 import 'package:todo/shared/data.dart' show today;
 
 class TodoBloc {

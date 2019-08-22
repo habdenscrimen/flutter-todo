@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
     show CalendarCarousel, WeekdayFormat;
 import 'package:flutter_calendar_carousel/classes/event.dart' show Event;
-import 'package:todo/bloc/locator.dart';
-import 'package:todo/bloc/todo.dart';
 
-import 'package:todo/shared/main.dart' show today, ThemeColors;
+import 'package:todo/bloc/all.dart' show locator, TodoBloc;
+import 'package:todo/shared/all.dart' show today, ThemeColors;
 
 class Calendar extends StatelessWidget with ThemeColors {
   @override

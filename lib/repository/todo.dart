@@ -1,6 +1,6 @@
 import 'package:todo/model/todo.dart';
 
-import 'todo_provider.dart';
+import 'todo_provider.dart' show TodoProvider;
 
 class TodoRepository {
   TodoProvider _todoProvider = TodoProvider.instance;
