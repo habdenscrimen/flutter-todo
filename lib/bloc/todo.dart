@@ -1,4 +1,5 @@
 import 'package:date_format/date_format.dart';
+import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'package:todo/model/todo.dart' show TodoModel;
@@ -30,6 +31,14 @@ class TodoBloc {
       _selectedDay.sink.add(newDay);
     }
   }
+
+  DateTime getDateWithTime(TimeOfDay time) => DateTime(
+        selectedDay.value.year,
+        selectedDay.value.month,
+        selectedDay.value.day,
+        time.hour,
+        time.minute,
+      );
 
   Future<void> fetchTodos() async {
     List<TodoModel> response = await _repository.list(_selectedDay.value);

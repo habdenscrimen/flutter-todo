@@ -23,7 +23,7 @@ class Calendar extends StatelessWidget with ThemeColors {
             },
             thisMonthDayBorderColor: Colors.transparent,
             selectedDayButtonColor: Colors.transparent,
-            selectedDayBorderColor: red,
+            selectedDayBorderColor: selectedDayBorder,
             todayButtonColor: red,
             todayBorderColor: Colors.transparent,
             selectedDayTextStyle: TextStyle(color: lightBlack),
