@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:todo/bloc/all.dart' show locator, TodoBloc;
 import 'package:todo/model/todo.dart' show TodoModel;
-import 'package:todo/shared/all.dart' show nowTime, ThemeColors;
+import 'package:todo/shared/all.dart' show ThemeColors;
 import 'input_dropdown.dart';
 
 enum Times { start, end }
@@ -16,10 +16,13 @@ class _AddTodoState extends State<AddTodo> with ThemeColors {
   final TodoBloc bloc = locator<TodoBloc>();
   String _title = '';
   bool _validateError = false;
+  final TextEditingController _titleController = new TextEditingController();
+
+  static final TimeOfDay _nowTime = TimeOfDay.now();
 
   final Map<Times, TimeOfDay> _times = {
-    Times.start: nowTime,
-    Times.end: TimeOfDay(hour: nowTime.hour + 2, minute: nowTime.minute),
+    Times.start: _nowTime,
+    Times.end: TimeOfDay(hour: _nowTime.hour + 2, minute: _nowTime.minute),
   };
 
   Future<void> _addTodo(BuildContext context, TodoModel newTodo) async {
@@ -37,6 +40,7 @@ class _AddTodoState extends State<AddTodo> with ThemeColors {
         _validateError = false;
         _title = '';
       });
+      _titleController.clear();
     }
   }
 
@@ -69,6 +73,7 @@ class _AddTodoState extends State<AddTodo> with ThemeColors {
       body: Column(
         children: <Widget>[
           TextField(
+            controller: _titleController,
             decoration: InputDecoration(
               labelText: 'Task name',
               hintText: 'My new todo',
@@ -119,10 +124,11 @@ class _AddTodoState extends State<AddTodo> with ThemeColors {
                       startTime: bloc.getDateWithTime(_times[Times.start]),
                     ),
                   );
-                  Scaffold.of(context).showSnackBar(SnackBar(
-                    content: Text('Todo added'),
-                    // backgroundColor: red,
-                  ));
+                  if (!_validateError)
+                    Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text('Todo added'),
+                      // backgroundColor: red,
+                    ));
                 },
               );
             },
