@@ -22,7 +22,7 @@ class _AddTodoState extends State<AddTodo> with ThemeColors {
     Times.end: TimeOfDay(hour: nowTime.hour + 2, minute: nowTime.minute),
   };
 
-  Future<void> _addNewTodo(BuildContext context, TodoModel newTodo) async {
+  Future<void> _addTodo(BuildContext context, TodoModel newTodo) async {
     // Form validation
     if (_title == '' || _title.isEmpty) {
       setState(() {
@@ -109,7 +109,7 @@ class _AddTodoState extends State<AddTodo> with ThemeColors {
               return RaisedButton(
                 child: Text('Add todo'),
                 onPressed: () async {
-                  await _addNewTodo(
+                  await _addTodo(
                     context,
                     TodoModel(
                       done: false,
