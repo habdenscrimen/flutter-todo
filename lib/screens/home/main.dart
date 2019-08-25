@@ -50,6 +50,7 @@ class _HomeState extends State<Home> {
     final TodoBloc bloc = locator<TodoBloc>();
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: StreamBuilder(
           initialData: today,

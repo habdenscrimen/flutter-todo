@@ -19,9 +19,8 @@ class _TimelineState extends State<Timeline> with ThemeColors {
     bloc.fetchTodos();
   }
 
-  String _getTime(DateTime date) {
-    return '${formatDate(date, [H, ':', nn])}';
-  }
+  String _getTime(DateTime date) =>
+      '${formatDate(date, [hh, ':', nn, ' ', am])}';
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +42,23 @@ class _TimelineState extends State<Timeline> with ThemeColors {
       onDismissed: (direction) {
         bloc.delete(todo);
       },
-      background: Container(color: red),
+      background: Container(
+        alignment: AlignmentDirectional.centerEnd,
+        color: red,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(left: 15),
+              child: Icon(Icons.delete, color: Colors.white),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 15),
+              child: Icon(Icons.delete, color: Colors.white),
+            ),
+          ],
+        ),
+      ),
       child: Padding(
         padding: const EdgeInsets.only(right: 10, left: 10),
         child: Row(
