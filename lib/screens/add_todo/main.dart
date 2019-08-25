@@ -22,14 +22,22 @@ class _AddTodoState extends State<AddTodo> with ThemeColors {
     Times.end: TimeOfDay(hour: nowTime.hour + 2, minute: nowTime.minute),
   };
 
-  Future<void> _addTodo(TodoModel todo) async {
-    await bloc.addTodo(todo);
-    await bloc.fetchTodos();
+  Future<void> _addNewTodo(BuildContext context, TodoModel newTodo) async {
+    // Form validation
+    if (_title == '' || _title.isEmpty) {
+      setState(() {
+        _validateError = true;
+      });
+    } else {
+      await bloc.addTodo(newTodo);
+      await bloc.fetchTodos();
 
-    setState(() {
-      _validateError = false;
-      _title = '';
-    });
+      // Reset form values.
+      setState(() {
+        _validateError = false;
+        _title = '';
+      });
+    }
   }
 
   // Select time with time picker.
@@ -46,6 +54,12 @@ class _AddTodoState extends State<AddTodo> with ThemeColors {
     }
   }
 
+  void _changeTitle(String newText) {
+    setState(() {
+      _title = newText;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final TextStyle valueStyle = Theme.of(context).textTheme.body1;
@@ -60,11 +74,7 @@ class _AddTodoState extends State<AddTodo> with ThemeColors {
               hintText: 'My new todo',
               errorText: _validateError ? 'Name can\'t be empty' : null,
             ),
-            onChanged: (String value) {
-              setState(() {
-                _title = value;
-              });
-            },
+            onChanged: _changeTitle,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -99,26 +109,20 @@ class _AddTodoState extends State<AddTodo> with ThemeColors {
               return RaisedButton(
                 child: Text('Add todo'),
                 onPressed: () async {
-                  if (_title == '' || _title.isEmpty) {
-                    setState(() {
-                      _validateError = true;
-                    });
-                  } else {
-                    await _addTodo(
-                      TodoModel(
-                        done: false,
-                        title: _title,
-                        day: snapshot.data,
-                        endTime: bloc.getDateWithTime(_times[Times.end]),
-                        startTime: bloc.getDateWithTime(_times[Times.start]),
-                      ),
-                    );
-
-                    Scaffold.of(context).showSnackBar(SnackBar(
-                      content: Text('Todo added'),
-                      backgroundColor: red,
-                    ));
-                  }
+                  await _addNewTodo(
+                    context,
+                    TodoModel(
+                      done: false,
+                      title: _title,
+                      day: snapshot.data,
+                      endTime: bloc.getDateWithTime(_times[Times.end]),
+                      startTime: bloc.getDateWithTime(_times[Times.start]),
+                    ),
+                  );
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                    content: Text('Todo added'),
+                    // backgroundColor: red,
+                  ));
                 },
               );
             },

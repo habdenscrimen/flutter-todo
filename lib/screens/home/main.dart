@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:todo/bloc/all.dart' show locator, TodoBloc;
-import 'package:todo/shared/data.dart' show today;
+import 'package:todo/shared/all.dart' show today, ThemeColors;
 import 'calendar.dart' show Calendar;
 import 'timeline.dart' show Timeline;
 
-class Home extends StatelessWidget {
+class Home extends StatelessWidget with ThemeColors {
   @override
   Widget build(BuildContext context) {
     final TodoBloc bloc = locator<TodoBloc>();
@@ -44,6 +44,7 @@ class Home extends StatelessWidget {
         onPressed: () {
           Navigator.pushNamed(context, '/add_todo');
         },
+        backgroundColor: red,
       ),
     );
   }
