@@ -16,4 +16,8 @@ class TodoRepository {
   Future<void> update(TodoModel todo) async {
     await _todoProvider.update(todo);
   }
+
+  Future<void> delete(TodoModel todo) async {
+    await _todoProvider.delete(todo);
+  }
 }

@@ -76,4 +76,10 @@ class TodoProvider {
       whereArgs: [todo.id],
     );
   }
+
+  Future<void> delete(TodoModel todo) async {
+    Database db = await database;
+
+    await db.delete(tableTodo, where: '$columnId = ?', whereArgs: [todo.id]);
+  }
 }
